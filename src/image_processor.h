@@ -1,7 +1,7 @@
 #ifndef IMAGE_PROCESSOR_H
 #define IMAGE_PROCESSOR_H
 
-#include <nape.h>
+#include <napi.h>
 #include <opencv2/opencv.hpp>
 
 Napi::Value ResizeImage(const Napi::CallbackInfo &info);
