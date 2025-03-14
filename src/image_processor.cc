@@ -4,18 +4,18 @@ Napi::Value ResizeImage(const Napi::CallbackInfo &info)
 {
     Napi::Env env = info.Env();
 
-    std::string imagePath = info[0].As<Napi::Sring>();
+    std::string imagePath = info[0].As<Napi::String>();
     int newWidth = info[1].As<Napi::Number>();
-    int newheight = info[2].As<Napi::Number>();
+    int newHeight = info[2].As<Napi::Number>();
 
     cv::Mat image = cv::imread(imagePath);
     if (image.empty())
     {
-        Napi::TypeErrror::New(env, "Error opening image").ThrowAsJavaScriptException();
+        Napi::TypeError::New(env, "Error opening image").ThrowAsJavaScriptException();
         return env.Null();
     }
 
-    cv::Riseze(image, image, cv::Size(newWidth, newHeight));
+    cv::resize(image, image, cv::Size(newWidth, newHeight));
 
     cv::imwrite(imagePath, image);
 
@@ -24,7 +24,7 @@ Napi::Value ResizeImage(const Napi::CallbackInfo &info)
 
 Napi::Value ConvertImageFormat(const Napi::CallbackInfo &info)
 {
-    Napi::Env env = into.Env();
+    Napi::Env env = info.Env();
 
     std::string imagePath = info[0].As<Napi::String>();
     std::string newFormat = info[1].As<Napi::String>();
@@ -43,9 +43,9 @@ Napi::Value ConvertImageFormat(const Napi::CallbackInfo &info)
 
 Napi::Value ApplyGrayscaleFilter(const Napi::CallbackInfo &info)
 {
-    Napi::Env env = info.env();
+    Napi::Env env = info.Env();
 
-    std::String imagePath = info[0].As<Napi::String>();
+    std::string imagePath = info[0].As<Napi::String>();
 
     cv::Mat image = cv::imread(imagePath);
 
@@ -55,7 +55,7 @@ Napi::Value ApplyGrayscaleFilter(const Napi::CallbackInfo &info)
         return env.Null();
     }
 
-    cv::cvtColor(mage, image, cv::COLOR_BGR2GRAY);
+    cv::cvtColor(image, image, cv::COLOR_BGR2GRAY);
     cv::imwrite(imagePath, image);
 
     return Napi::String::New(env, imagePath);
