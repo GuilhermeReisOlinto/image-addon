@@ -30,7 +30,7 @@ Este é um addon nativo para Node.js, desenvolvido em C++ com OpenCV, que permit
 1️⃣ Clone o repositório
 
 ```
-    git clone https://github.com/seu-usuario/image-addon.git
+    git clone https://github.com/GuilhermeReisOlinto/image-addon.git
     cd image-addon
 ```
 
